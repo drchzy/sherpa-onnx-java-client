@@ -32,7 +32,7 @@ public class WsMicroPhone {
             recorder.start();
             log.info("麦克风已打开");
             long startTime = System.currentTimeMillis();
-            while (false || (System.currentTimeMillis() - startTime) < 10000) {
+            while (false || (System.currentTimeMillis() - startTime) < 100000) {
                 // PCM数据直接发送
                 byte[] pcmData = recorder.getBytes(1024);
                 short[] sData = new short[pcmData.length / 2];

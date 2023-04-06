@@ -20,8 +20,8 @@ import java.util.concurrent.TimeUnit;
  * @author Eureka
  */
 public class WsDecodeFile {
-    private static int SAMPLES_PER_MESSAGE = 4096;
-    private static URL filePath = ResourceUtil.getResource("wavs\\4.wav");
+    private static int SAMPLES_PER_MESSAGE = 4000;
+    private static URL filePath = ResourceUtil.getResource("wavs\\3.wav");
 
     public static void main(String[] args) throws IOException {
         WsClient client = new WsClient();
@@ -54,6 +54,8 @@ public class WsDecodeFile {
             ThreadUtil.sleep(10, TimeUnit.MILLISECONDS);
             start += SAMPLES_PER_MESSAGE;
         }
+        client.sendStr("Done");
+        ThreadUtil.sleep(200, TimeUnit.MILLISECONDS);
         client.close();
     }
 

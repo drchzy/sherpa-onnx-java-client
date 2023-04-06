@@ -39,6 +39,11 @@ public class WsClient {
         this.session.getAsyncRemote().sendBinary(BufferUtil.create(bytes));
     }
 
+    public void sendStr(String str) throws IOException {
+        this.session.getAsyncRemote().sendText(str);
+    }
+
+
     /**
      * 打开连接
      *
