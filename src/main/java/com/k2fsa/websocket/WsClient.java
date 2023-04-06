@@ -1,22 +1,33 @@
 package com.k2fsa.websocket;
 
 import cn.hutool.core.io.BufferUtil;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
  * WebSocket客户端
- * @Date 2023/3/19
+ *
  * @author Eureka
+ * @Date 2023/3/19
  */
 @ClientEndpoint
 public class WsClient {
     private static Logger log = Logger.getLogger("WsClient");
-    private static String serverUrl = "ws://127.0.0.1:6006/";
+    private String serverUrl = "ws://127.0.0.1:6006/";
     private static Session session;
+
+    public static Map<String, String> sessionTextMap = new HashMap<>();
+
+    public static Session getSession() {
+        return session;
+    }
 
     /**
      * 初始化
@@ -51,7 +62,7 @@ public class WsClient {
      */
     @OnOpen
     public void onOpen(Session session) {
-        log.info("WebSocket打开");
+        //log.info("WebSocket打开");
         this.session = session;
     }
 
@@ -61,8 +72,11 @@ public class WsClient {
      * @param text
      */
     @OnMessage
-    public void onMessage(String text) {
-        log.info("WebSocket接收消息：" + text);
+    public void onMessage(Session session, String text) {
+        //log.info("WebSocket接收消息：" + text);
+        if (!"Done!".equals(text)) {
+            WsClient.sessionTextMap.put(session.getId(), text);
+        }
     }
 
     /**
@@ -80,7 +94,7 @@ public class WsClient {
      */
     @OnClose
     public void onClosing() throws IOException {
-        log.info("WebSocket关闭");
+        //log.info("WebSocket关闭");
         session.close();
     }
 
