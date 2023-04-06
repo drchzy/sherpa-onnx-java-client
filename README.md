@@ -9,7 +9,7 @@
 - 请先参考sherpa-onnx文档部署好sherpa-onnx-websocket-server
 - wav语音文件通过WebSocket发送给sherpa-onnx并返回识别内容
 - 实时采集麦克风设备语音通过WebSocket发送给sherpa-onnx并返回识别内容
-- 本人水平有限，感谢[@fangjun](https://github.com/csukuangfj)的指导
+- 感谢[@fangjun](https://github.com/csukuangfj)的指导
 
 
 
